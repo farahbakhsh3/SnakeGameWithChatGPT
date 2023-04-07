@@ -41,8 +41,8 @@ namespace SnakeGame
             score = 0;
 
             this.Text = this.desc + " Score: " + score;
-            timer1.Interval = 100;
-            timer1.Start();
+            tmrGame.Interval = 100;
+            tmrGame.Start();
         }
 
         private void GenerateFood()
@@ -52,7 +52,7 @@ namespace SnakeGame
             foodY = random.Next(0, screenHeight / snakeBlock) * snakeBlock;
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void frmMain_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Right && direction != "left")
                 direction = "right";
@@ -100,7 +100,7 @@ namespace SnakeGame
             {
                 score += 10;
                 this.Text = this.desc + " Score: " + score;
-                timer1.Interval = Math.Max(timer1.Interval-2, 35);
+                tmrGame.Interval = Math.Max(tmrGame.Interval-2, 35);
 
                 GenerateFood();
             }
@@ -115,7 +115,7 @@ namespace SnakeGame
             {
                 if (snakeList[i].X == head.X && snakeList[i].Y == head.Y)
                 {
-                    timer1.Stop();
+                    tmrGame.Stop();
                     MessageBox.Show("Game Over!");
                     ResetGame();
                     break;
@@ -123,7 +123,7 @@ namespace SnakeGame
             }
         }
 
-        private void Form1_Paint(object sender, PaintEventArgs e)
+        private void frmMain_Paint(object sender, PaintEventArgs e)
         {
             Graphics canvas = e.Graphics;
 
